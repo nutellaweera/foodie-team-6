@@ -130,3 +130,6 @@ dmypy.json
 
 # system files
 .DS_Store
+
+# keys
+keys/
