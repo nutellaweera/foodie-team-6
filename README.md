@@ -9,10 +9,10 @@ A jupyter notebook with data stored in .csv format.
 A jupyter notebook with data stored in a cloud db (tbd).
 
 ### V3
-A ipywidget running within a jupyter notebook, using the cloud db.
+A python API, with the ability to integrate with a simple UI (plain html).
 
 ### V4
-A web app (Anvil/Django) with data stored in a cloud db.
+A web app (Anvil/Django) with data stored in a cloud db, the same API as v3 with an improved interface based on the wireframes (tbd).
 
 ## Setup instructions 
 ### V1 (Jupyter notebook, csv dataset)
