@@ -1,4 +1,3 @@
-from __future__ import print_function
 from ipyfilechooser import FileChooser
 from google.cloud import vision
 from google.oauth2 import service_account
@@ -8,10 +7,11 @@ import csv
 import json
 import re
 import io
+import os
 
 # key path (to replace)
-VISION_API_KEY_PATH = '/Users/sunellauni/Documents/UWE/IGP/foodie-team-6/keys/cal_key.json'
-FIREBASE_API_KEY_PATH = '/Users/sunellauni/Documents/UWE/IGP/foodie-team-6/keys/firebase_key.json'
+VISION_API_KEY_PATH = 'keys/cal_key.json'
+FIREBASE_API_KEY_PATH = 'keys/firebase_key.json'
 
 
 # Displays a file selected with a specified filter
@@ -20,16 +20,17 @@ def choose_file(filters):
     f = FileChooser()
     f.filter_pattern = filters
     display(f)
-    print(f.selected)
     return f.selected
 
 # Return path to google vision api key
-def get_vision_api_key():
-    return VISION_API_KEY_PATH
+def get_vision_api_key(test_mode = False):
+    # add ../ if it isn't being run from a py file (test_mode = false)
+    return VISION_API_KEY_PATH if test_mode else '../'+VISION_API_KEY_PATH
 
 # Return path to firebase key
-def get_firebase_key():
-    return FIREBASE_API_KEY_PATH
+def get_firebase_key(test_mode = False):
+    # add ../ to the path if it isn't being run from a py file (test_mode = false)
+    return FIREBASE_API_KEY_PATH if test_mode else '../'+FIREBASE_API_KEY_PATH
 
 
 # Initializes the Google Vision API with a selected key file, 
@@ -37,8 +38,6 @@ def get_firebase_key():
 # and returns the annotated response
 # ref - https://codelabs.developers.google.com/codelabs/cloud-vision-api-python#1
 def invoke_vision_api(img_path, key_path):
-    print(key_path)
-    print(img_path)
     credentials = service_account.Credentials.from_service_account_file(key_path)
     client = vision.ImageAnnotatorClient(credentials=credentials)
     
@@ -92,3 +91,16 @@ def add_data_to_firebase(db):
 
     db.child('CalorieCounts').set(calorie_data)
 
+
+# Identifies an image and returns it's label, calories and confidence 
+# Used for testing
+def identify_image(image_path):
+    response = invoke_vision_api(image_path, get_vision_api_key(True))
+    labels = {}
+    for label in response.label_annotations:
+        labels[label.description.lower()] = round(label.score*100, 2)
+    cal_count_db = connect_to_firebase(get_firebase_key(True))
+    match, calories = find_cal_match(cal_count_db, labels.keys())
+    if (match and calories):
+        return match, calories, labels[match] # matched label, calorie count and confidence score
+    return None, None, None
