@@ -1,13 +1,18 @@
 # foodie-team-6
-Contains prototypes for a calorie tracking application developed as part of the requirement for the Interdisciplinary Group Project module at UWE. 
+Contains prototypes for an application developed as part of the requirement for the Interdisciplinary Group Project module at UWE. 
 Prototype versions based on initial requirement spec and MVP documented in the Blackboard wiki, each version building on its predescessor. 
+
+CalCheck aims to recognize the number of calories associated with an image of food.
+
+The simplified design is as follows:
+<img width="310" alt="Screenshot 2022-05-04 at 3 56 01 pm" src="https://user-images.githubusercontent.com/8774488/166711112-016dc409-7e5d-4e3e-8db1-05f13d1c25df.png">
 
 ## Version information
 ### V1
-A jupyter notebook with data stored in .csv format, with the ability to determine the number of calories in a hardcoded image using the Google Vision API.
+A Jupyter notebook with data stored in .csv format, with the ability to determine the number of calories in a hardcoded image using the Google Vision API.
 
 ### V2
-A jupyter notebook with data stored in a Firebase Firestore db.
+A Jupyter notebook with data stored in a Firebase Firestore db.
 
 ### V3
 A Jupyter notebook with the ability to accept an image from a user (using a file selection iPyWidget) and determine the number of calories in it.
@@ -37,3 +42,9 @@ Sample report:
 ![Screenshot 2022-04-25 at 9 48 08 pm](https://user-images.githubusercontent.com/8774488/166497283-ac402f8d-fb56-4e4d-908a-a2a8e4a41fd4.png)
 
 
+## Links and references
+* [Kanban board](https://github.com/users/nutellaweera/projects/1)
+* [Calorie dataset](https://www.kaggle.com/datasets/vaishnavivenkatesan/food-and-their-calories)
+* [Google Vision API docs](https://cloud.google.com/vision/docs)
+* [Firebase Firestore docs](https://firebase.google.com/docs/firestore)
+* [PySimpleGUI docs](https://pysimplegui.readthedocs.io/en/latest/)
