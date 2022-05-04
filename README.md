@@ -35,10 +35,11 @@ A simple GUI developed using PySimpleGUI to accept an image from a user and disp
 ### To run the GUI (for a single image)
 * Run [gui.py](https://github.com/nutellaweera/foodie-team-6/blob/main/mvp_refactored/gui.py) 
 
-### To run in bulk
+### To test/run in bulk
 * Add images to the /images folder, name them with the expected label (i.e. hamburger.png).
 * Run [test.py](https://github.com/nutellaweera/foodie-team-6/blob/main/mvp_refactored/test.py)
-Sample report:
+
+Sample automated test report:
 ![Screenshot 2022-04-25 at 9 48 08 pm](https://user-images.githubusercontent.com/8774488/166497283-ac402f8d-fb56-4e4d-908a-a2a8e4a41fd4.png)
 
 
